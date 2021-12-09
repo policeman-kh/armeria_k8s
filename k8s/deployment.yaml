@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: armeria-k8s
-        image: armedia-k8s:test2
+        image: armedia-k8s:test
         ports:
         - containerPort: 8081
         livenessProbe:
