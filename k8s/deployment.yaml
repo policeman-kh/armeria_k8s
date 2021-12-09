@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: armeria-k8s
+  labels:
+    app: armeria-k8s
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: armeria-k8s
+  template:
+    metadata:
+      labels:
+        app: armeria-k8s
+    spec:
+      containers:
+      - name: armeria-k8s
+        image: armedia-k8s:test
+        ports:
+        - containerPort: 8081
+        livenessProbe:
+          initialDelaySeconds: 10
+          httpGet:
+            port: 8081
+            path: /actuator/health/liveness
+          periodSeconds: 5
+          timeoutSeconds: 1
+          successThreshold: 1
+          failureThreshold: 1
+        readinessProbe:
+          initialDelaySeconds: 10
+          httpGet:
+            port: 8081
+            path: /actuator/health/readiness
+          periodSeconds: 5
+          timeoutSeconds: 1
+          successThreshold: 1
+          failureThreshold: 2

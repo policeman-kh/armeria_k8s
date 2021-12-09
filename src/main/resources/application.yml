@@ -1,0 +1,35 @@
+# Disable the Web Server.
+# See https://docs.spring.io/spring-boot/docs/current/reference/html/howto-embedded-web-servers.html.
+spring.main.web-application-type: none
+
+armeria:
+  ports:
+    - port: 8080
+      protocols:
+        - http
+#  internal-services:
+#    include: metrics, docs
+#    port: 18080
+
+management:
+  server:
+     port: 8081
+  endpoint:
+    info:
+      enabled: true
+    metrics:
+      enabled: true
+    beans:
+      enabled: true
+    health:
+      enabled: true
+      probes:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+# http://localhost:8081/actuator/health
+#      base-path: /internal/actuator
+server:
+  port: -1
