@@ -23,8 +23,8 @@ management:
       enabled: true
     health:
       enabled: true
-      probes:
-        enabled: true
+#      probes:
+#        enabled: true
   endpoints:
     web:
       exposure:

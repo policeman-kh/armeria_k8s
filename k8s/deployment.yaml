@@ -16,14 +16,15 @@ spec:
     spec:
       containers:
       - name: armeria-k8s
-        image: armedia-k8s:test
+        image: armedia-k8s:test2
         ports:
         - containerPort: 8081
         livenessProbe:
           initialDelaySeconds: 10
           httpGet:
             port: 8081
-            path: /actuator/health/liveness
+#            path: /actuator/health/liveness
+            path: /actuator/health
           periodSeconds: 5
           timeoutSeconds: 1
           successThreshold: 1
@@ -32,7 +33,8 @@ spec:
           initialDelaySeconds: 10
           httpGet:
             port: 8081
-            path: /actuator/health/readiness
+#            path: /actuator/health/readiness
+            path: /actuator/health
           periodSeconds: 5
           timeoutSeconds: 1
           successThreshold: 1
